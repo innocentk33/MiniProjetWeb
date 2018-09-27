@@ -81,7 +81,7 @@ header nav ul li a {
 /*Main img*/
 #main-img{
     height: 500px;
-    background: url('/img/main.jpeg') no-repeat ;
+    background: url('../img/main.jpeg') no-repeat ;
    
     background-size: cover;
 
@@ -129,14 +129,14 @@ margin: 80px 0;
     margin-right: 10px;
 }
 #step-1{
-  background:url('/img/steps-icon-3.png') no-repeat center top;
+  background:url('../img/steps-icon-3.png') no-repeat center top;
 }
 #step-2{
-    background:url('/img/steps-icon-3.png') no-repeat center top;
+    background:url('../img/steps-icon-3.png') no-repeat center top;
     
 }
 #step-3{
-    background:url('/img/steps-icon-3.png') no-repeat center top ;
+    background:url('../img/steps-icon-3.png') no-repeat center top ;
     
 }
 /*POSSIBILITIES*/
