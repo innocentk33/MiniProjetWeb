@@ -128,3 +128,23 @@ window.onkeydown = function handleKeyDown(e){
     }
     serpent.setDirection(newDirection);
 };
+
+
+this.setNewPosition = function () {
+    //trouver une nouvelle position
+    var newX = Math.round(Math.random()*(widthInBlock-1));
+    var newY = Math.round(Math.random()*(heightInBlock-1));
+    this.position = [newX,newY] ;
+  };
+
+
+this.isEatingApple = function (appleToEat) {
+         
+    var head =this.body[0];
+    if (head[0]===appleToEat.position[0] && head[1]===appleToEat.position[1])
+    return true;
+    else
+    return false;
+    
+
+  };
