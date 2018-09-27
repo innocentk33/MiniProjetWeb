@@ -7,12 +7,7 @@ window.onload = function () {
     var delay = 100;
     var serpent;
 
-
-
-
     init();
-
-
 
     function init() {
         var canvas = document.createElement("canvas");
@@ -102,11 +97,6 @@ window.onload = function () {
                 this.direction = newDirection;
             }
         };
-
-
-        
-
-
     }
 };
 //trouver la direction dans laquelle le serpent doit partir

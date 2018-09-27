@@ -11,6 +11,8 @@ window.onload = function () {
     var heightInBlock = canvasHeight / blockSize;
     var score;
     var timeout;
+    var isGameOver;
+    var vitesse;
 
 
 
@@ -18,7 +20,7 @@ window.onload = function () {
     init();
 
 
-
+// Initialisation des composants
     function init() {
         var canvas = document.createElement("canvas");
         canvas.height = canvasHeight;
@@ -46,12 +48,13 @@ window.onload = function () {
         ], "right");
         pomme = new Apple([10, 10]);
         score = 0;
+        vitesse =1;
         refreshCanvas();
     }
 
 
     function refreshCanvas() {
-        serpent.advance();
+        serpent.advance(vitesse);
         //verifion si le serpent est a la bonne position
         if (serpent.checkCollision()) {
             console.log("Game OVER");
@@ -72,6 +75,7 @@ window.onload = function () {
             drawScore();
             serpent.draw();
             pomme.draw();
+            drawUI();
 
             //executer une fonction a chaque fois en fonction d'un delais
             timeout = setTimeout(refreshCanvas, delay);
@@ -96,21 +100,28 @@ window.onload = function () {
         ctx.strokeText("Appuyer sur Espace pour rejouer", centreX, centreY - 120);
         ctx.fillText("Appuyer sur Espace pour rejouer", centreX, centreY - 120);
         ctx.restore();
+        isGameOver = true;
     }
 
     function restart() {
-        serpent = new Snake([
-            [6, 4],
-            [5, 4],
-            [4, 4],
-            [3, 4],
-            [2, 4]
-        ], "right");
-        pomme = new Apple([10, 10]);
-        score = 0;
-        clearTimeout(timeout);
-        refreshCanvas();
-    }
+
+
+        if (isGameOver){
+            serpent = new Snake([
+                [6, 4],
+                [5, 4],
+                [4, 4],
+                [3, 4],
+                [2, 4]
+            ], "right");
+            pomme = new Apple([10, 10]);
+            score = 0;
+            clearTimeout(timeout);
+            refreshCanvas();
+            isGameOver = false;
+        }
+        }
+
 
     function drawScore() {
         ctx.save();
@@ -121,7 +132,6 @@ window.onload = function () {
         var centreX = canvasWidth / 2;
         var centreY = canvasHeight / 2;
         ctx.fillText(score.toString(), centreX, centreY);
-
         ctx.restore();
     }
 
@@ -130,6 +140,15 @@ window.onload = function () {
         var y = position[1] * blockSize;
         ctx.fillRect(x, y, blockSize, blockSize);
     }
+    function drawUI() {
+        ctx.save();
+        ctx.font = "bold 10px sans-serif";
+        ctx.fillStyle = "black";
+       // var centreX = canvasWidth / 2;
+        //var centreY = canvasHeight / 2;
+        ctx.fillText("Made By Innocent Kacou with JavaScript", 10, canvasHeight-10);
+        ctx.restore();
+      }
 
     function Snake(body, direction) {
         this.body = body;
@@ -145,21 +164,21 @@ window.onload = function () {
             ctx.restore();
         };
 
-        this.advance = function () {
+        this.advance = function (vitesse) {
             var nextPosition = this.body[0].slice(); // permet de cree un nouvelle element en format copy en coupant la partie necesaire
             //nextPosition[0]++; //Faire avancer le serpent d'une case ver la droite
             switch (this.direction) {
                 case "left":
-                    nextPosition[0]--;
+                    nextPosition[0]-=vitesse;
                     break;
                 case "right":
-                    nextPosition[0]++;
+                    nextPosition[0]+=vitesse;
                     break;
                 case "down":
-                    nextPosition[1]++;
+                    nextPosition[1]+=vitesse;
                     break;
                 case "up":
-                    nextPosition[1]--;
+                    nextPosition[1]-=vitesse;
                     break;
                 default:
                     throw "direction non valide";
