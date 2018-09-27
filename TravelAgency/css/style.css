@@ -70,7 +70,7 @@ header nav{
 }
 header nav ul li {
     float: left;
-    display: inline-block;
+    /*display: inline-block;*/
 }
 header nav ul li a {
     text-transform: uppercase;
