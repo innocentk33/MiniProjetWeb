@@ -1,2 +1,2 @@
 # MiniProjetWeb
-Mes mini projet effectuer pendant mon apprentissage web
+Mes mini projet web
